@@ -1,0 +1,43 @@
+﻿CREATE TABLE [dbo].[Login](
+  [Id] [int] IDENTITY(1,1) NOT NULL,
+  [Active] [bit] NOT NULL,
+  [Email] [varchar](255) NULL,
+  [FirstName] [varchar](255) NULL,
+  [LastName] [varchar](255) NULL,
+  [UserName] [varchar](255) NOT NULL,
+  [Password] [varchar](255) NOT NULL,
+  [PasswordQuestion] [varchar](255) NULL,
+  [PasswordAnswer] [varchar](255) NULL,
+  [Salt] [varchar](255) NOT NULL,
+  CONSTRAINT [PK_Login] PRIMARY KEY CLUSTERED 
+  (
+    [Id] ASC
+  )
+)
+
+CREATE TABLE [dbo].[Role](
+  [Id] [int] IDENTITY(1,1) NOT NULL,
+  [Name] [varchar](255) NOT NULL,
+  [Description] [text] NULL,
+  CONSTRAINT [PK_Role] PRIMARY KEY CLUSTERED 
+  (
+    [Id] ASC
+  )
+)
+
+CREATE TABLE [dbo].[Login_Role](
+  [LoginId] [int] NOT NULL,
+  [RoleId] [int] NOT NULL,
+  CONSTRAINT [PK_Login_Role] PRIMARY KEY CLUSTERED 
+  (
+    [LoginId] ASC,
+    [RoleId] ASC
+  )
+)
+GO
+ALTER TABLE [dbo].[Login_Role]  WITH CHECK ADD  CONSTRAINT [FK_Login_
+Role_Login] FOREIGN KEY([LoginId]) REFERENCES [dbo].[Login] ([Id])
+GO
+ALTER TABLE [dbo].[Login_Role]  WITH CHECK ADD  CONSTRAINT [FK_Login_
+Role_Role] FOREIGN KEY([RoleId]) REFERENCES [dbo].[Role] ([Id])
+GO

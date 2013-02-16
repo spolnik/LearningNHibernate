@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="ACME.Model"
+                   namespace="ACME.Model">
+  <class name="Product"
+         table="Products">
+    <id name="ProductId">
+      <generator class="hilo"/>
+    </id>
+    <property name="ProductName" length="50" />
+    <many-to-one class="UnitOfMeasure" name="UOM" column="UomKey" />
+    <idbag name="Categories" table="ProductCategories">
+      <collection-id column="id" type="int">
+        <generator class="hilo"/>
+      </collection-id>
+      <key column="ProductId" />
+      <many-to-many column="CategoryId" class="Category" />
+    </idbag>
+  </class>
+</hibernate-mapping>

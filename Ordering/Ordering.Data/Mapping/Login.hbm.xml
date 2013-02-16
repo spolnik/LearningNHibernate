@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" 
+                   namespace="Ordering.Data.Common" 
+                   assembly="Ordering.Data">
+  <class name="Login" table="Login">
+    <id name="Id">
+      <generator class="hilo" />
+    </id>
+    <property name="Active" type="Boolean" />
+    <property name="LastName" type="String" />
+    <property name="FirstName" type="String" />
+    <property name="Email" type="String" />
+    <property name="UserName" type="String" />
+    <property name="Password" type="String" />
+    <property name="PasswordQuestion" type="String" />
+    <property name="PasswordAnswer" type="String" />
+    <property name="Salt" type="String" />
+    <bag name="Roles" table="Login_Role" inverse="false" lazy="true"
+         cascade="none">
+      <key>
+        <column name="LoginId" length="4" sql-type="int" not-null="true" />
+      </key>
+      <many-to-many class="Role">
+        <column name="RoleId" length="4" sql-type="int" not-null="true" />
+      </many-to-many>
+    </bag>
+  </class>
+</hibernate-mapping>

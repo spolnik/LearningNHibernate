@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping  xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Ordering.Data"
+                   namespace="Ordering.Data.Common">
+  <class name="Phone" table="Phone">
+    <id name="Id" type="Int32" unsaved-value="null">
+      <column name="Id" length="4" sql-type="int" not-null="true"
+              unique="true" index="PK_Phone" />
+      <generator class="hilo" />
+    </id>
+    <property name="Number" type="String" not-null="true" />
+    <property name="PhoneType" type="Int32" not-null="true" />
+    <bag name="Contacts" table="Contact_Phone" inverse="false" lazy="true"
+         cascade="none">
+      <key>
+        <column name="Phone_Id" length="4" sql-type="int" not-null="true" />
+      </key>
+      <many-to-many class="Contact">
+        <column name="Contact_Id" length="4" sql-type="int" not-null="true" />
+      </many-to-many>
+    </bag>
+  </class>
+</hibernate-mapping>

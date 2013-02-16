@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8C88F22C-8F1B-4534-BFFB-0AE3472589C2}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Ordering.Data</RootNamespace>
+    <AssemblyName>Ordering.Data</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>SimpleKey.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="log4net">
+      <HintPath>..\Ordering.Console\bin\Debug\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>..\..\..\..\..\..\Library\NHibernate-2.1.2.GA-bin\Required_Bins\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\Address.cs" />
+    <Compile Include="Common\BaseComponent.cs" />
+    <Compile Include="Common\Contact.cs" />
+    <Compile Include="Common\Login.cs" />
+    <Compile Include="Common\OrderHeader.cs" />
+    <Compile Include="Common\OrderItem.cs" />
+    <Compile Include="Common\Phone.cs" />
+    <Compile Include="Common\Role.cs" />
+    <Compile Include="DataAccess\AddressDataControl.cs" />
+    <Compile Include="DataAccess\BaseDataControl.cs" />
+    <Compile Include="DataAccess\ContactDataControl.cs" />
+    <Compile Include="DataAccess\LoginDataControl.cs" />
+    <Compile Include="DataAccess\OrderHeaderDataControl.cs" />
+    <Compile Include="DataAccess\OrderItemDataControl.cs" />
+    <Compile Include="DataAccess\PagingAndSortingArguments.cs" />
+    <Compile Include="DataAccess\PhoneDataControl.cs" />
+    <Compile Include="DataAccess\RoleDataControl.cs" />
+    <Compile Include="DataAccess\SessionProvider.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\OrderingMembershipProvider.cs" />
+    <Compile Include="Security\OrderingRoleProvider.cs" />
+    <Compile Include="Utils\CriteriaHelper.cs" />
+    <Compile Include="Utils\ICriteriaHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapping\Contact.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapping\OrderHeader.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapping\Phone.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapping\Address.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapping\OrderItem.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SimpleKey.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Login.sql.txt" />
+    <EmbeddedResource Include="Mapping\Role.hbm.xml" />
+    <EmbeddedResource Include="Mapping\Login.hbm.xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
